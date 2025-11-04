@@ -1,6 +1,8 @@
+import { fetchFromFirestore } from '../components/firebase/firebase'
 import Navbar from '../components/Navbar/Navbar'
 
 const Home_page = () => {
+    fetchFromFirestore()
     return (
         <div>
             <Navbar />

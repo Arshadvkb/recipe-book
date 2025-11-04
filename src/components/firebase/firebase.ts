@@ -1,7 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import { Firestore, getFirestore } from 'firebase/firestore'
+import {
+    collection,
+    Firestore,
+    getDocs,
+    getFirestore,
+} from 'firebase/firestore'
 import {
     getAuth,
     type Auth,
@@ -29,4 +34,20 @@ const auth: Auth = getAuth(app)
 const provider: AuthProvider = new GoogleAuthProvider()
 const storage: FirebaseStorage = getStorage(app)
 
-export { analytics, firestore, auth, provider, storage }
+const fetchFromFirestore = async () => {
+    try {
+        const productsCollection = collection(firestore, 'recipes')
+        const productSnapshot = await getDocs(productsCollection)
+        const productList = productSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }))
+        console.log('Fetched products from Firestore:', productList)
+        return productList
+    } catch (error) {
+        console.error('Error fetching products from Firestore:', error)
+        return []
+    }
+}
+
+export { analytics, firestore, auth, provider, storage, fetchFromFirestore }
