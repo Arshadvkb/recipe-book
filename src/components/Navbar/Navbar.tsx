@@ -1,0 +1,18 @@
+const Navbar = () => {
+    return (
+        <div>
+            <nav className="flex  justify-between pt-2 text-amber-50 h-10 bg-blue-400">
+                <h1>Recipe Book</h1>
+                <div>
+                    <ul className="flex justify-around gap-2 pr-6">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/add">Add_recipe</a></li>
+                        {/* <li>login</li> */}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    )
+}
+
+export default Navbar
