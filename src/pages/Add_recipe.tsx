@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth, firestore } from '../components/firebase/firebase'
+import { auth, firestore } from '../lib/firebase/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import Navbar from '../components/Navbar/Navbar'
 
@@ -41,7 +41,7 @@ const AddRecipeForm: React.FC = () => {
             return
         }
 
-        // 2. Create the final recipe object
+     
         const newRecipe: Omit<Recipe, 'id'> = {
             title,
             ingredients,
@@ -80,7 +80,7 @@ const AddRecipeForm: React.FC = () => {
                         Add a New Recipe
                     </h2>
 
-                    {/* Title Field */}
+                 
                     <div className="mb-4">
                         <label
                             htmlFor="title"
@@ -98,7 +98,7 @@ const AddRecipeForm: React.FC = () => {
                         />
                     </div>
 
-                    {/* Ingredient Fields */}
+             
                     <div className="mb-4">
                         <label
                             htmlFor="ingredient"
@@ -117,7 +117,7 @@ const AddRecipeForm: React.FC = () => {
                                 className=" px-3 py-2 border border-gray-300 rounded-md bg-light shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             <button
-                                type="button" // Important: prevents form submission
+                                type="button"
                                 onClick={handleAddIngredient}
                                 className="px-4 py-2 bg-light text-black rounded-md hover:bg-blue-600"
                             >
@@ -126,7 +126,7 @@ const AddRecipeForm: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* List of Added Ingredients */}
+                
                     {ingredients.length > 0 && (
                         <div className="mb-4 p-3 bg-gray-50 rounded-md">
                             <h3 className="font-medium mb-2">Ingredients:</h3>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { auth } from '../components/firebase/firebase'
+import { auth } from '../lib/firebase/firebase'
 import { createUserWithEmailAndPassword, type User } from 'firebase/auth'
 
 const Register = () => {
