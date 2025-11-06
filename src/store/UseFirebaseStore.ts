@@ -1,4 +1,3 @@
-// UseFirebaseStore.ts - Enhanced with extensive debugging to pinpoint why state isn't updating
 import { create } from 'zustand'
 
 export interface Recipe {

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { auth } from '../lib/firebase/firebase'
 import { createUserWithEmailAndPassword, type User } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const hanndlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -48,6 +50,8 @@ const Register = () => {
                         <button className="bg-accent rounded-4xl mb-5">
                             Register
                         </button>
+                        <p>Already have an account ?{" "}<span onClick={()=> navigate('/', { replace: true })}>Login</span></p>
+
                     </div>
                 </div>
             </form>

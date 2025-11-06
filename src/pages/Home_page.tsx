@@ -27,7 +27,7 @@ const HomePage = () => {
      <main className="container mx-auto px-4 py-8 bg-secondary min-h-screen min-w-screen">
         {Array.isArray(recipeList) ? (
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Recipes</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center pt-4">Recipes</h2>
             {recipeList.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recipeList.map((recipe: Recipe) => (

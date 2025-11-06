@@ -16,7 +16,7 @@ const Login = () => {
                 const user: User = userCredential.user
                 console.log(user)
                 if (user) {
-                    navigate('/', { replace: true })
+                    navigate('/home', { replace: true })
                 }
             })
             .catch((error) => {
@@ -54,9 +54,12 @@ const Login = () => {
                         <button className="bg-accent rounded-4xl mb-5">
                             Login
                         </button>
+                       <p>No account?{" "}<span onClick={()=> navigate('/register', { replace: true })}>register</span></p>
                     </div>
                 </div>
+              
             </form>
+           
         </>
     )
 }
