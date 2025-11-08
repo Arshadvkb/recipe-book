@@ -50,7 +50,7 @@ const Register = () => {
                         <button className="bg-accent rounded-4xl mb-5">
                             Register
                         </button>
-                        <p>Already have an account ?{" "}<span onClick={()=> navigate('/', { replace: true })}>Login</span></p>
+                        <p>Already have an account ?{" "}<span  className='underline text-blue-800' onClick={()=> navigate('/', { replace: true })}>Login</span></p>
 
                     </div>
                 </div>
