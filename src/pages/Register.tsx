@@ -35,7 +35,7 @@ const Register = () => {
                                 setEmail(e.target.value)
                             }}
                             placeholder="email"
-                            className="bg-accent rounded-4xl mb-5 pl-5"
+                            className="bg-accent rounded-4xl mb-5 pl-5 h-10"
                             type="text"
                         />
                         <input
@@ -44,10 +44,10 @@ const Register = () => {
                                 setPassword(e.target.value)
                             }}
                             placeholder="password"
-                            className="bg-accent rounded-4xl mb-5 pl-5"
+                            className="bg-accent rounded-4xl mb-5 pl-5 h-10"
                             type="password"
                         />
-                        <button className="bg-accent rounded-4xl mb-5">
+                        <button className="bg-accent rounded-4xl mb-5 h-10">
                             Register
                         </button>
                         <p>Already have an account ?{" "}<span  className='underline text-blue-800' onClick={()=> navigate('/', { replace: true })}>Login</span></p>

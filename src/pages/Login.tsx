@@ -39,7 +39,7 @@ const Login = () => {
                                 setEmail(e.target.value)
                             }}
                             placeholder="email"
-                            className="bg-accent rounded-4xl mb-5 pl-5"
+                            className="bg-accent rounded-4xl mb-5 pl-5 h-10"
                             type="text"
                         />
                         <input
@@ -48,10 +48,10 @@ const Login = () => {
                                 setPassword(e.target.value)
                             }}
                             placeholder="password"
-                            className="bg-accent rounded-4xl mb-5 pl-5"
+                            className="bg-accent rounded-4xl mb-5 pl-5 h-10"
                             type="password"
                         />
-                        <button className="bg-accent rounded-4xl mb-5">
+                        <button className="bg-accent rounded-4xl mb-5 h-10">
                             Login
                         </button>
                        <p>No account?{" "}<span  className='underline text-blue-800' onClick={()=> navigate('/register', { replace: true })}>register</span></p>
