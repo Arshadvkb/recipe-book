@@ -2,11 +2,15 @@ import { useState } from 'react'
 import { auth } from '../lib/firebase/firebase'
 import { createUserWithEmailAndPassword, type User } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+   const successregister=()=> toast("Signed up in successfuly")
+   const failedregister=()=> toast("SignUp failed")
+
 
     const hanndlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -14,6 +18,7 @@ const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user: User = userCredential.user
+                successregister()
                 console.log(user)
             })
             .catch((error) => {
@@ -21,6 +26,7 @@ const Register = () => {
                 const errorMessage = error.message
                 console.log(errorCode)
                 console.log(errorMessage)
+                failedregister()
             })
     }
 

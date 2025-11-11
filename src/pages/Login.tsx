@@ -2,11 +2,17 @@ import { signInWithEmailAndPassword, type User } from 'firebase/auth'
 import { useState } from 'react'
 import { auth } from '../lib/firebase/firebase'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+
+const successlogin=()=> toast("Logged in  successfuly")
+   const failedlogin=()=> toast("Login failed")
+
+
     const hanndlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(email, '  ', password)
@@ -15,11 +21,13 @@ const Login = () => {
             .then((userCredential) => {
                 const user: User = userCredential.user
                 console.log(user)
+                successlogin()
                 if (user) {
                     navigate('/home', { replace: true })
                 }
             })
             .catch((error) => {
+                failedlogin()
                 const errorCode = error.code
                 const errorMessage = error.message
 
