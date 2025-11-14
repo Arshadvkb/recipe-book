@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { auth, firestore } from '../lib/firebase/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import Navbar from '../components/Navbar/Navbar'
+import { toast } from 'react-toastify'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface Recipe {
     title: string
@@ -11,6 +13,12 @@ interface Recipe {
 }
 
 const AddRecipeForm: React.FC = () => {
+
+     const navigate = useNavigate()
+
+    const recipeadded=()=>toast('Recipe saved successfully!')
+    const failed=()=>toast('Error saving recipe. Please try again.')
+
     const [title, setTitle] = useState<string>('')
     const [instructions, setInstructions] = useState<string>('')
 
@@ -60,10 +68,13 @@ const AddRecipeForm: React.FC = () => {
             setTitle('')
             setIngredients([])
             setInstructions('')
-            alert('Recipe saved successfully!')
+            recipeadded()
+           
+            navigate('/home')
+        
         } catch (err) {
             console.error('Error saving recipe: ', err)
-            alert('Error saving recipe. Please try again.')
+          failed()
         }
     }
 
