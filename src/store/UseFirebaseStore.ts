@@ -3,7 +3,6 @@ import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { auth, firestore } from '../lib/firebase/firebase'
 import { toast } from 'react-toastify'
 
-
 export interface Recipe {
     id: string
     title: string
@@ -18,26 +17,23 @@ interface FirebaseStoreState {
 
 interface FirebaseStoreActions {
     getData: () => Promise<void>
-    deleteItem: (id: string, userId:string) => Promise<void>
+    deleteItem: (id: string, userId: string) => Promise<void>
 }
 
 type FirebaseStore = FirebaseStoreState & FirebaseStoreActions
 
-
-let db 
+let db
 try {
-
-    const {firestore: firestoreDb } = await import('../lib/firebase/firebase')
+    const { firestore: firestoreDb } = await import('../lib/firebase/firebase')
     db = firestoreDb
-    console.log('Firebase DB loaded successfully:', !!db) 
+    console.log('Firebase DB loaded successfully:', !!db)
 } catch (importError) {
     console.error('Firebase config import failed:', importError)
     db = null
 }
 
-const recipedeleted=()=>toast("recipe deleted")
-const failed=()=>toast("recipe deleted")
-
+const recipedeleted = () => toast('recipe deleted')
+const failed = () => toast('recipe deleted')
 
 export const useFirebaseStore = create<FirebaseStore>((set) => ({
     recipeList: null,
@@ -92,28 +88,24 @@ export const useFirebaseStore = create<FirebaseStore>((set) => ({
 
         console.log('=== getData ENDED ===')
     },
-    deleteItem:async (id,userId)=>{
+    deleteItem: async (id, userId) => {
         try {
-           const CurrentUser=auth.currentUser?.uid
-           console.log("cur user",CurrentUser)
-           console.log("user",userId);
+            const CurrentUser = auth.currentUser?.uid
+            console.log('cur user', CurrentUser)
+            console.log('user', userId)
 
-           if(userId===CurrentUser){
-           await deleteDoc(doc(firestore, 'recipes', id)).then(()=>{
-              recipedeleted();
-           }).catch(()=>{
-            failed()
-           })
-          
-
-           }
-           
-           
-            
+            if (userId === CurrentUser) {
+                await deleteDoc(doc(firestore, 'recipes', id))
+                    .then(() => {
+                        recipedeleted()
+                    })
+                    .catch(() => {
+                        failed()
+                    })
+            }
         } catch (error) {
             failed()
-              console.error('Inner try-catch error:', error)
+            console.error('Inner try-catch error:', error)
         }
-        
-    }
+    },
 }))

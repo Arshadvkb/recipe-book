@@ -11,7 +11,6 @@ const Navbar = () => {
                         <li>
                             <a href="/add">Add_recipe</a>
                         </li>
-                       
                     </ul>
                 </div>
             </nav>

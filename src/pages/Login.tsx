@@ -9,9 +9,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-const successlogin=()=> toast("Logged in  successfuly")
-   const failedlogin=()=> toast("Login failed")
-
+    const successlogin = () => toast('Logged in  successfuly')
+    const failedlogin = () => toast('Login failed')
 
     const hanndlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -62,12 +61,20 @@ const successlogin=()=> toast("Logged in  successfuly")
                         <button className="bg-accent rounded-4xl mb-5 h-10">
                             Login
                         </button>
-                       <p>No account?{" "}<span  className='underline text-blue-800' onClick={()=> navigate('/register', { replace: true })}>register</span></p>
+                        <p>
+                            No account?{' '}
+                            <span
+                                className="underline text-blue-800"
+                                onClick={() =>
+                                    navigate('/register', { replace: true })
+                                }
+                            >
+                                register
+                            </span>
+                        </p>
                     </div>
                 </div>
-              
             </form>
-           
         </>
     )
 }

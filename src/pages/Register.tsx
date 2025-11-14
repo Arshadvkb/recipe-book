@@ -8,9 +8,8 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
-   const successregister=()=> toast("Signed up in successfuly")
-   const failedregister=()=> toast("SignUp failed")
-
+    const successregister = () => toast('Signed up in successfuly')
+    const failedregister = () => toast('SignUp failed')
 
     const hanndlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -56,8 +55,15 @@ const Register = () => {
                         <button className="bg-accent rounded-4xl mb-5 h-10">
                             Register
                         </button>
-                        <p>Already have an account ?{" "}<span  className='underline text-blue-800' onClick={()=> navigate('/', { replace: true })}>Login</span></p>
-
+                        <p>
+                            Already have an account ?{' '}
+                            <span
+                                className="underline text-blue-800"
+                                onClick={() => navigate('/', { replace: true })}
+                            >
+                                Login
+                            </span>
+                        </p>
                     </div>
                 </div>
             </form>

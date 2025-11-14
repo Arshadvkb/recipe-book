@@ -41,7 +41,6 @@ const AddRecipeForm: React.FC = () => {
             return
         }
 
-     
         const newRecipe: Omit<Recipe, 'id'> = {
             title,
             ingredients,
@@ -80,7 +79,6 @@ const AddRecipeForm: React.FC = () => {
                         Add a New Recipe
                     </h2>
 
-                 
                     <div className="mb-4">
                         <label
                             htmlFor="title"
@@ -98,7 +96,6 @@ const AddRecipeForm: React.FC = () => {
                         />
                     </div>
 
-             
                     <div className="mb-4">
                         <label
                             htmlFor="ingredient"
@@ -126,7 +123,6 @@ const AddRecipeForm: React.FC = () => {
                         </div>
                     </div>
 
-                
                     {ingredients.length > 0 && (
                         <div className="mb-4 p-3 bg-gray-50 rounded-md">
                             <h3 className="font-medium mb-2">Ingredients:</h3>

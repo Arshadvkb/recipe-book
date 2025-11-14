@@ -15,17 +15,17 @@ const App = () => {
                 <Route path="/add" element={<Add_recipe />} />
             </Routes>
             <ToastContainer
-        position="top-right"
-        autoClose={500000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+                position="top-right"
+                autoClose={500000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     )
 }

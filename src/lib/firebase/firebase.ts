@@ -33,9 +33,6 @@ const auth: Auth = getAuth(app)
 const provider: AuthProvider = new GoogleAuthProvider()
 const storage: FirebaseStorage = getStorage(app)
 
-
-
-
 //fetch datas from firestore
 const fetchFromFirestore = async () => {
     try {
