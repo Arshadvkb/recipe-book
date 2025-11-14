@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import { useFirebaseStore, type Recipe } from '../store/UseFirebaseStore';
-import {  Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 const HomePage = () => {
   const { recipeList, getData ,deleteItem} = useFirebaseStore();
@@ -64,7 +64,7 @@ const HomePage = () => {
                           )}
                         </ul>
                       </details>
-                      <Trash2 onClick={deleteItem(recipe.id)}/>
+                      <Trash2 onClick={()=>deleteItem(recipe.id,recipe.userId)}/>
                     </div>
                   </div>
                 ))}

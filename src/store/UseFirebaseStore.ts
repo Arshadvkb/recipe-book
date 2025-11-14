@@ -1,4 +1,8 @@
 import { create } from 'zustand'
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
+import { auth, firestore } from '../lib/firebase/firebase'
+import { toast } from 'react-toastify'
+
 
 export interface Recipe {
     id: string
@@ -14,6 +18,7 @@ interface FirebaseStoreState {
 
 interface FirebaseStoreActions {
     getData: () => Promise<void>
+    deleteItem: (id: string, userId:string) => Promise<void>
 }
 
 type FirebaseStore = FirebaseStoreState & FirebaseStoreActions
@@ -30,13 +35,15 @@ try {
     db = null
 }
 
-import { collection, getDocs } from 'firebase/firestore' 
+const recipedeleted=()=>toast("recipe deleted")
+const failed=()=>toast("recipe deleted")
+
 
 export const useFirebaseStore = create<FirebaseStore>((set) => ({
     recipeList: null,
 
     getData: async () => {
-        console.log('=== getData STARTED ===') 
+        console.log('=== getData STARTED ===')
 
         if (!db) {
             console.error('DB not available - cannot fetch')
@@ -45,17 +52,17 @@ export const useFirebaseStore = create<FirebaseStore>((set) => ({
         }
 
         try {
-            console.log('About to call getDocs...') 
+            console.log('About to call getDocs...')
 
-            const querySnapshot = await getDocs(collection(db, 'recipes')) 
+            const querySnapshot = await getDocs(collection(db, 'recipes'))
             console.log(
                 'getDocs resolved. Docs count:',
                 querySnapshot.docs.length
-            ) 
+            )
 
             const data: Recipe[] = querySnapshot.docs.map((doc) => {
                 const docData = doc.data()
-                console.log('Mapping doc:', doc.id, docData) 
+                console.log('Mapping doc:', doc.id, docData)
                 return {
                     id: doc.id,
                     title: docData.title || '',
@@ -65,7 +72,7 @@ export const useFirebaseStore = create<FirebaseStore>((set) => ({
                 }
             })
 
-            console.log('Mapped data (full array):', data) 
+            console.log('Mapped data (full array):', data)
 
             set((state) => {
                 console.log(
@@ -77,7 +84,7 @@ export const useFirebaseStore = create<FirebaseStore>((set) => ({
                 return newState
             })
 
-            console.log('set() called successfully') 
+            console.log('set() called successfully')
         } catch (error) {
             console.error('Inner try-catch error:', error)
             set({ recipeList: [] })
@@ -85,4 +92,28 @@ export const useFirebaseStore = create<FirebaseStore>((set) => ({
 
         console.log('=== getData ENDED ===')
     },
+    deleteItem:async (id,userId)=>{
+        try {
+           const CurrentUser=auth.currentUser?.uid
+           console.log("cur user",CurrentUser)
+           console.log("user",userId);
+
+           if(userId===CurrentUser){
+           await deleteDoc(doc(firestore, 'recipes', id)).then(()=>{
+              recipedeleted();
+           }).catch(()=>{
+            failed()
+           })
+          
+
+           }
+           
+           
+            
+        } catch (error) {
+            failed()
+              console.error('Inner try-catch error:', error)
+        }
+        
+    }
 }))
