@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import { useFirebaseStore, type Recipe } from '../store/UseFirebaseStore';
+import {  Trash2 } from 'lucide-react';
 
 const HomePage = () => {
-  const { recipeList, getData } = useFirebaseStore();
+  const { recipeList, getData ,deleteItem} = useFirebaseStore();
 
   useEffect(() => {
     console.log('useEffect: Calling getData...'); 
@@ -63,6 +64,7 @@ const HomePage = () => {
                           )}
                         </ul>
                       </details>
+                      <Trash2 onClick={deleteItem(recipe.id)}/>
                     </div>
                   </div>
                 ))}
