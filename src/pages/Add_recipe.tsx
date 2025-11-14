@@ -3,7 +3,7 @@ import { auth, firestore } from '../lib/firebase/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import Navbar from '../components/Navbar/Navbar'
 import { toast } from 'react-toastify'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 interface Recipe {
     title: string
@@ -13,11 +13,10 @@ interface Recipe {
 }
 
 const AddRecipeForm: React.FC = () => {
+    const navigate = useNavigate()
 
-     const navigate = useNavigate()
-
-    const recipeadded=()=>toast('Recipe saved successfully!')
-    const failed=()=>toast('Error saving recipe. Please try again.')
+    const recipeadded = () => toast('Recipe saved successfully!')
+    const failed = () => toast('Error saving recipe. Please try again.')
 
     const [title, setTitle] = useState<string>('')
     const [instructions, setInstructions] = useState<string>('')
@@ -69,12 +68,11 @@ const AddRecipeForm: React.FC = () => {
             setIngredients([])
             setInstructions('')
             recipeadded()
-           
+
             navigate('/home')
-        
         } catch (err) {
             console.error('Error saving recipe: ', err)
-          failed()
+            failed()
         }
     }
 
